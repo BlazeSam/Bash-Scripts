@@ -7,6 +7,10 @@
 # fi
 
 echo Love $1
-eif 1[[ test -f recent.tar ]]
-find . -regextype posix-extended -type f -regex '.* \(+[0-9]+\)\.[^/]+'
 
+if [[ ! -e del.tar.gz ]]; then
+	find . -regextype posix-extended -type f -regex '.* \(+[0-9]+\)\.[^/]+' | xargs tar -czvf del.tar.gz 
+elif [[  -e del.tar.gz ]]; then 
+	tar -xvzf del.tar.gz -C recent
+	rm -f del.tar.gz
+fi
